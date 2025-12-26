@@ -6,7 +6,7 @@ import NoteList from '../NoteList/NoteList';
 import SearchBox from '../SearchBox/SearchBox';
 import css from './App.module.css';
 import Pagination from '../Pagination/Pagination';
-import { useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { fetchNotes } from '../../services/noteService';
 
 export default function App() {
@@ -25,6 +25,7 @@ export default function App() {
     const { data, isLoading, isError } = useQuery({
         queryKey: ['notes', page, debouncedSearch],
         queryFn: () => fetchNotes({ page, perPage, search: debouncedSearch }),
+        placeholderData: keepPreviousData,
     });
     const totalPages = data?.totalPages ?? 0;
     
