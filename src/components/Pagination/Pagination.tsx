@@ -1,7 +1,7 @@
 import ReactPaginate from 'react-paginate';
 import css from './Pagination.module.css';
 
-type Props = {
+interface Props {
     pageCount: number;
     currentPage: number;
     onPageChange: (page: number) => void;

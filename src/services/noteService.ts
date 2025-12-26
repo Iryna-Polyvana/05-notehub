@@ -16,7 +16,7 @@ type FetchNotesResponse = {
 }
 
 export const fetchNotes = async (params: FetchNotesParams): Promise<FetchNotesResponse> => {
-    const res = await axios.get('/notes', {params});
+    const res = await axios.get<FetchNotesResponse>('/notes', {params});
     return res.data;
 };
 
@@ -27,11 +27,11 @@ type CreateNoteData = {
 }
 
 export const createNote = async (noteData: CreateNoteData): Promise<Note> => {
-    const res = await axios.post('/notes', noteData);
+    const res = await axios.post<Note>('/notes', noteData);
     return res.data;
 };
 
 export const deleteNote = async(id: string):Promise<Note>=> {
-    const res = await axios.delete(`/notes/${id}`);
+    const res = await axios.delete<Note>(`/notes/${id}`);
     return res.data;
 }
